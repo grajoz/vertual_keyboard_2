@@ -1,0 +1,108 @@
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    font-size: 29px;
+    font-weight: bold;
+}
+#keyboard {
+    
+    display: block;
+    height: auto;
+    padding: 6px;
+    
+   /*grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+    grid-template-areas:"yo 1 2 3 4 5 6 7 8 9 0 mi re Backspace Backspace"
+                        "Cl Cl a s d f g h j k l cp ap En En"
+                        "SL SL z x c v b n m co po sl Up SR SR"
+                        "Ctl Ctl All S S S S S Alr Str Str L D R";*/
+}
+.text {
+    font-size: 14px;
+}
+
+.textarea {
+    width: 790px;
+    display: block;
+    height: 200px;
+    border: 1px solid black;
+    padding: 5px;
+    font-family: 'Roboto', 'Arial', sans-serif;
+}
+
+.keyboard__key {
+    position: relative;
+    display: block;
+    width: 35px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 4px;
+    padding: 4px;
+    float: left;
+    text-align: center;
+    box-shadow: 3px 3px 2px  brown;
+    cursor: pointer;
+}
+.keyboard__key:hover{
+    background: grey;
+}
+.active {
+     box-shadow: -5px -5px 2px -5px brown;
+
+     top: 3px;
+     left: 3px;
+ }
+
+.Backquote  {
+    width: 20px;
+}
+.Backspace {
+    width: 95px;
+    font-size: 16px;
+}
+.Tab {
+    width: 80px;
+}
+.CapsLock {
+    width: 80px;
+    font-size: 14px;
+}
+.Enter{
+    width: 90px;
+}
+.ShiftLeft {
+    width: 80px;
+    font-size: 18px;
+}
+.ControlLeft {
+    width: 80px;
+    font-size: 18px;
+}
+.ShiftRight {
+    width: 90px;
+    font-size: 18px;
+}
+.Space {
+    width: 355px;
+}
+
+    
+    
+.AltLeft {
+    font-size: 18px;
+  }
+  
+.AltRight {
+    font-size: 18px;
+}
+.ControlRight {
+    font-size: 18px;
+    white-space: pre-line;
+}
+
+.clearfix {
+    display: block;
+    width: 100%;
+    clear: both;
+}
