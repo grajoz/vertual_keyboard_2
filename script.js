@@ -275,7 +275,11 @@ document.onkeydown = function (event) {
   document.querySelectorAll('#keyboard .keyboard__key').forEach(function (element){
       element.classList.remove('active');
   });
+  try {
 document.querySelector('.'+event.code).classList.add('active');
+  }
+  catch (err) {fgh()};
+  if (event.code==='undefined'){event.code=''};
 CapsLockInformation(event.code);
 ShiftDownInformation(event.code);
 
@@ -285,16 +289,22 @@ document.onkeyup = function (event) {
   let data;
   let BackspaceKey = '';
   let DataBackspaceKey = '';
+  try {
   document.querySelector('.'+event.code).classList.remove('active');
+  }
+  catch (err) {fgh()};
   data =  getValue(obj, event.code);
-  console.log(event);
+
   data = getValue(data, keyStatus);
   DataBackspaceKey = event.code;
   let {value} =  data;
   data = value;
-  
+  console.log(data);
+   if (data==undefined){data=''};
+   console.log(data);
   document.getElementById('textarea').value += data;  
   BackspaceKey=document.getElementById('textarea').value;
+ 
   if (DataBackspaceKey==='Backspace'){
   document.getElementById('textarea').value = BackspaceRun (BackspaceKey);
   BackspaceKey = '';
@@ -305,7 +315,7 @@ document.onkeyup = function (event) {
 
 document.querySelectorAll('#keyboard .keyboard__key').forEach(function (element) {
   element.onmousedown = function (event) {
-    console.log(event);
+  
       document.querySelectorAll('#keyboard .keyboard__key').forEach( function (element){
           element.classList.remove('active');
       });
@@ -319,7 +329,7 @@ document.querySelectorAll('#keyboard .keyboard__key').forEach(function (element)
 document.querySelectorAll('#keyboard .keyboard__key').forEach(function (element) {
     let outForOut;
     element.onmouseup = function (event) {
-      console.log(event);
+  
         let BackspaceKey = '';
         let data = this.getAttribute('data');
         this.classList.remove('active');
@@ -400,3 +410,5 @@ if (lenguageStatus === 'en'){
 keyStatusRun ();
 
 }
+
+function fgh(){};
