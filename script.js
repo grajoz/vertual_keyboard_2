@@ -191,11 +191,15 @@ const obj = {
     },
   };
 
+
 const textarea = document.getElementById('textarea');
 const keyboard=Object.keys(obj);
 let CapsLockStatus = false;
 let ShiftStatus = false;
-let lenguageStatus = 'en';
+let lenguageStatus;
+lenguageStatus = localStorage["lenguageStatusKey"];
+if(lenguageStatus==undefined){lenguageStatus='en'}
+
 let keyStatus = '1';
 let keyboardOut = [];
 
@@ -213,6 +217,17 @@ function getValue(object, key) {
         }
     }) && result;    
 }
+if (ShiftStatus === false && CapsLockStatus === false && lenguageStatus === 'en' ){keyStatus = '1'};
+if (ShiftStatus === true && CapsLockStatus === false && lenguageStatus === 'en' ){keyStatus = '2'};
+if (ShiftStatus === false && CapsLockStatus === false && lenguageStatus === 'ru' ){keyStatus = '3'};
+if (ShiftStatus === true && CapsLockStatus === false && lenguageStatus === 'ru' ){keyStatus = '4'};
+if (ShiftStatus === false && CapsLockStatus === true && lenguageStatus === 'en' ){keyStatus = '5'};
+if (ShiftStatus === true && CapsLockStatus === true && lenguageStatus === 'en' ){keyStatus = '6'};
+if (ShiftStatus === false && CapsLockStatus === true && lenguageStatus === 'ru' ){keyStatus = '7'};
+if (ShiftStatus === true && CapsLockStatus === true && lenguageStatus === 'ru' ){keyStatus = '8'};
+
+
+
 function keyStatusRun (){
 if (ShiftStatus === false && CapsLockStatus === false && lenguageStatus === 'en' ){keyStatus = '1'};
 if (ShiftStatus === true && CapsLockStatus === false && lenguageStatus === 'en' ){keyStatus = '2'};
@@ -228,6 +243,7 @@ init();
 
 
 function init() {
+ 
 for (let i = 0; i < keyboard.length; i++){
   let outForOut;
   if (ShiftStatus === false){ shiftUp = 1;}else{shiftUp = 2;}
@@ -299,9 +315,9 @@ document.onkeyup = function (event) {
   DataBackspaceKey = event.code;
   let {value} =  data;
   data = value;
-  console.log(data);
+
    if (data==undefined){data=''};
-   console.log(data);
+ 
   document.getElementById('textarea').value += data;  
   BackspaceKey=document.getElementById('textarea').value;
  
@@ -407,6 +423,11 @@ function lenguageStatusChange(){
 if (lenguageStatus === 'en'){
   lenguageStatus = 'ru'
 } else {lenguageStatus = 'en'};
+
+localStorage["lenguageStatusKey"] = lenguageStatus;
+console.log(localStorage["lenguageStatusKey"]);
+
+
 keyStatusRun ();
 
 }
