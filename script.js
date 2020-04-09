@@ -217,6 +217,8 @@ function getValue(object, key) {
         }
     }) && result;    
 }
+
+
 if (ShiftStatus === false && CapsLockStatus === false && lenguageStatus === 'en' ){keyStatus = '1'};
 if (ShiftStatus === true && CapsLockStatus === false && lenguageStatus === 'en' ){keyStatus = '2'};
 if (ShiftStatus === false && CapsLockStatus === false && lenguageStatus === 'ru' ){keyStatus = '3'};
@@ -237,13 +239,13 @@ if (ShiftStatus === false && CapsLockStatus === true && lenguageStatus === 'en' 
 if (ShiftStatus === true && CapsLockStatus === true && lenguageStatus === 'en' ){keyStatus = '6'};
 if (ShiftStatus === false && CapsLockStatus === true && lenguageStatus === 'ru' ){keyStatus = '7'};
 if (ShiftStatus === true && CapsLockStatus === true && lenguageStatus === 'ru' ){keyStatus = '8'};
-init();
+rewriteKeyboard();
 }
 
 
 
-function init() {
- 
+
+ function writeObj(){
 for (let i = 0; i < keyboard.length; i++){
   let outForOut;
   if (ShiftStatus === false){ shiftUp = 1;}else{shiftUp = 2;}
@@ -263,9 +265,14 @@ for (let i = 0; i < keyboard.length; i++){
    
   }
   keyboardOut[i] = outForOut;
+
 }
 
+ }
+ writeObj()
 
+
+function init() {
     let outInit = '';
     
     for (let i = 0; i < keyboard.length; i++){
@@ -277,11 +284,22 @@ for (let i = 0; i < keyboard.length; i++){
       outInit += '<div class="keyboard__key ' + keyboard[i] + '" data="' + keyboard[i] + '" >' + keyboardOut[i] + '</div>';
     }
     }
-    
     document.querySelector('#keyboard').innerHTML = outInit;
-
   }
 init();
+
+
+
+function rewriteKeyboard(){
+
+  writeObj()
+  let rewrite;
+  for (let i = 0; i < keyboardOut.length; i++){
+    rewrite=document.querySelector('.'+keyboard[i]+'');
+    if (keyboard[i]==='Tab'){rewrite.textContent='Tab'}else{
+    rewrite.textContent = keyboardOut[i];}
+  }
+}
 
 
 
